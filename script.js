@@ -16,10 +16,10 @@ const changeActiveItem = () => {
     });
 }
 menuItem.forEach(item => {
-    item.addEventListener('click', () => {
+    item.addEventListener('click', (e) => {
         changeActiveItem();
-
         item.classList.add('active');
+        e.stopPropagation();
         if (item.id != 'notifications') {
             document.querySelector('.notifications-popup').style.display = 'none';
         }
@@ -31,18 +31,6 @@ menuItem.forEach(item => {
     });
 });
 
-const closeNotification=(e)=>{
-    console.log('closenotification');
-    if(e.target.classList.contains('')){
-        notification.style.display = 'none';
-    }
-    else{
-        console.log('jnneneneen');
-    }
-}
-notification.addEventListener('click', closeNotification);
-
-
 messageNotification.addEventListener('click', () => {
     messages.style.boxShadow = '0 0 1rem var(--color-primary)';
     messageNotification.querySelector('.notification-count').style.display = 'none';
@@ -50,7 +38,6 @@ messageNotification.addEventListener('click', () => {
         document.querySelector('.messages').style.boxShadow = 'none';
     }, 2000);
 });
-
 
 const SearchMessage =()=>{
     const val = messageSearch.value.toLowerCase();
@@ -188,6 +175,8 @@ document.querySelector('.bg-3').addEventListener('click', ()=>{
     document.querySelector('.bg-1').classList.remove('active');
     changeBg();
 })
-// document.querySelector('body').addEventListener('click', ()=>{
-//     window.location.reload();
-// })
+
+ document.querySelector('body').addEventListener('click', ()=>{
+    notification.style.display = 'none';
+    changeActiveItem();
+});
