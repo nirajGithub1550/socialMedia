@@ -43,7 +43,6 @@ const SearchMessage =()=>{
     const val = messageSearch.value.toLowerCase();
     message.forEach(chat =>{
         let name = chat.querySelector('h5').textContent.toLowerCase();
-        console.log(name.indexOf(val) != -1);
         if(name.indexOf(val) != -1){
             chat.style.display = 'flex';
         }
